@@ -2,27 +2,31 @@
 setlocal
 title Glaze Runner 1.04 - Universal Launcher
 
-:: This gets the drive and path of the BAT file itself
-set "ROOT_DIR=%~dp0"
+:: 1. Move the terminal's focus to the folder where THIS bat file is
+:: /d is critical: it allows switching between different drives (like M: to C:)
+cd /d "%~dp0"
 
-:: Set the paths relative to the BAT location
-:: This works on C:, D:, M:, or even a USB Thumb Drive!
-set "MAIN_FILE=%ROOT_DIR%Glaze1.04\IMPORTANT\GlazeRunner\main.js"
-set "ELECTRON_PATH=%ROOT_DIR%Glaze1.04\IMPORTANT\GlazeRunner\node_modules\.bin\electron.cmd"
+:: 2. Set the relative path to the internal engine folder
+:: We use quotes around the SET to handle spaces in folder names safely
+set "ENGINE_DIR=Glaze1.04\IMPORTANT\GlazeRunner"
 
 echo [ System Check ]
-echo Root Directory: %ROOT_DIR%
-echo Looking for Electron...
+echo Current Drive: %~d0
+echo Engine Path: %ENGINE_DIR%
 
-:: Check if Electron exists in this specific path
-if exist "%ELECTRON_PATH%" (
-    echo [ Success ] Launching Glaze 1.0.4...
-    start "" "%ELECTRON_PATH%" "%MAIN_FILE%"
+:: 3. Check if the Electron CMD exists before trying to run it
+if exist "%ENGINE_DIR%\node_modules\.bin\electron.cmd" (
+    echo [ Success ] Launching Glaze 1.0.4 Gold...
+    
+    :: We use START "" to launch Electron so the CMD window doesn't hang
+    start "" "%ENGINE_DIR%\node_modules\.bin\electron.cmd" "%ENGINE_DIR%\main.js"
 ) else (
     echo.
-    echo [ ERROR ] Electron not found! 
-    echo Please run 'npm install' inside:
-    echo %ROOT_DIR%Glaze1.04\IMPORTANT\GlazeRunner\
+    echo [ ERROR ] Electron not found!
+    echo.
+    echo 1. Open CMD
+    echo 2. Type: cd /d "%~dp0%ENGINE_DIR%"
+    echo 3. Type: npm install
     echo.
     pause
 )

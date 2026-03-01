@@ -1,0 +1,18 @@
+// Setup
+SetBackground("black")
+Print out("Welcome to the Office 🏥")
+
+// Variables
+Set var doorClose = "Left Door Shut! 🚪"
+Set var lightOn = "Hallway Light is ON 💡"
+
+// Custom Key Functions
+Function: if keypressed = "D" wait 0s trigger var: "doorClose"
+Function: if keypressed = "L" wait 1s trigger var: "lightOn"
+
+// Level Layout
+DrawRect(0, 0, 800, 20, "gray")       // Ceiling
+DrawRect(100, 100, 200, 200, "blue")  // Desk
+DrawRect(750, 350, 50, 50, "green")   // 6 AM Goal
+
+Print out("Press 'D' for Door or 'L' for Light!")

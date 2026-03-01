@@ -1,0 +1,23 @@
+// --- Setup ---
+SetBackground("#050505")
+Print out("🔋 Power Level: 100%")
+Print out("Use ARROW KEYS to move.")
+Print out("Press 'L' to toggle the Hallway Light!")
+
+// --- Variables ---
+Set var lightOn = "🔦 Light is ON! You can see the hallway. ✨"
+Set var powerDrain = "⚠️ Power at 50%... something is moving."
+
+// --- Logic ---
+// When 'L' is pressed, wait 0 seconds, then trigger the lightOn variable
+Function: if keypressed = "L" wait 0s trigger var: "lightOn"
+
+// --- World Building ---
+DrawRect(0, 0, 800, 20, "gray")       // Ceiling
+DrawRect(350, 150, 100, 100, "blue")  // Desk
+DrawRect(700, 300, 50, 50, "green")   // Exit
+
+// --- Delayed Event ---
+Wait 5s
+Print out("🕒 1 AM: The building settles...")
+Function: if keypressed = "P" wait 0s trigger var: "powerDrain"

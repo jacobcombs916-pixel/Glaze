@@ -1,0 +1,33 @@
+// --- ENVIRONMENT SETUP ---
+SetBackground("#0a0a0a")
+Print out("MISSION: Reach the Green Emerald at the bottom-right.")
+Print out("WARNING: Do not touch the Red Security Beams!")
+
+// --- LEVEL DESIGN (Obstacles) ---
+// Top Wall
+DrawRect(0, 0, 800, 20, "gray")
+// Left Wall
+DrawRect(0, 0, 20, 400, "gray")
+// Right Wall
+DrawRect(780, 0, 20, 400, "gray")
+// Bottom Wall
+DrawRect(0, 380, 800, 20, "gray")
+
+// --- SECURITY BEAMS (Hazards) ---
+// Beam 1
+DrawRect(200, 20, 15, 250, "red")
+// Beam 2 
+DrawRect(400, 130, 15, 250, "red")
+// Beam 3
+DrawRect(600, 20, 15, 250, "red")
+
+// --- THE TARGET (The Emerald) ---
+DrawRect(720, 320, 40, 40, "green")
+Print out("The Emerald is protected by thermal sensors.")
+
+// --- PLAYER INITIAL POSITION ---
+// Start the player near the top-left entrance
+// Default start is (50,50), moving them slightly to center in the hallway
+MovePlayer(10, 10)
+
+Print out("Use ARROW KEYS to navigate the maze!")

@@ -1,0 +1,12 @@
+{
+  "name": "glaze-runner",
+  "version": "1.0.4",
+  "description": "Electron Glaze Runner - Logic Update",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^26.6.10"
+  }
+}

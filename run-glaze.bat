@@ -1,25 +1,28 @@
 @echo off
 setlocal
-REM This is where your BAT file sits (M:\Glaze1.04)
+title Glaze Runner 1.04 - Universal Launcher
+
+:: This gets the drive and path of the BAT file itself
 set "ROOT_DIR=%~dp0"
 
-REM Updated path to match your "Double Folder" structure
+:: Set the paths relative to the BAT location
+:: This works on C:, D:, M:, or even a USB Thumb Drive!
 set "MAIN_FILE=%ROOT_DIR%Glaze1.04\IMPORTANT\GlazeRunner\main.js"
-
-REM Updated path to where Electron is actually installed
 set "ELECTRON_PATH=%ROOT_DIR%Glaze1.04\IMPORTANT\GlazeRunner\node_modules\.bin\electron.cmd"
 
-echo Checking path: %MAIN_FILE%
+echo [ System Check ]
+echo Root Directory: %ROOT_DIR%
+echo Looking for Electron...
 
+:: Check if Electron exists in this specific path
 if exist "%ELECTRON_PATH%" (
-    echo Launching Glaze 1.0.4...
-    "%ELECTRON_PATH%" "%MAIN_FILE%"
+    echo [ Success ] Launching Glaze 1.0.4...
+    start "" "%ELECTRON_PATH%" "%MAIN_FILE%"
 ) else (
     echo.
-    echo ERROR: Cannot find Electron at the expected location!
-    echo Tried: %ELECTRON_PATH%
+    echo [ ERROR ] Electron not found! 
+    echo Please run 'npm install' inside:
+    echo %ROOT_DIR%Glaze1.04\IMPORTANT\GlazeRunner\
     echo.
-    echo Please ensure your "IMPORTANT" folder is inside: 
-    echo %ROOT_DIR%Glaze1.04\
     pause
 )

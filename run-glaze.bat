@@ -1,29 +1,25 @@
 @echo off
-setlocal
-title Glaze Runner 1.0.4 Gold
-
-:: 1. Move to the folder where the BAT file actually is (M:\Glaze1.04)
+title GLUO 1.04 - ENGINE START
 cd /d "%~dp0"
 
-:: 2. Set the paths based on your EXACT folder structure
-:: Since the BAT is ALREADY inside M:\Glaze1.04, we don't need to repeat the folder name
-set "ENGINE_PATH=IMPORTANT\GlazeRunner"
-set "ELECTRON=%~dp0%ENGINE_PATH%\node_modules\.bin\electron.cmd"
-set "MAIN=%~dp0%ENGINE_PATH%\main.js"
+:: THE PATHS YOU PROVIDED:
+:: Root: M:\Glaze1.04
+:: Electron: M:\Glaze1.04\Glaze1.04\IMPORTANT\GlazeRunner\node_modules\electron\dist\electron.exe
 
-echo [ GLUO 1.04 DEBUG ]
-echo Current Path: %~dp0
-echo Checking for Electron: "%ELECTRON%"
+set "EL_EXE=%~dp0Glaze1.04\IMPORTANT\GlazeRunner\node_modules\electron\dist\electron.exe"
+set "APP_JS=%~dp0Glaze1.04\IMPORTANT\GlazeRunner\main.js"
 
-:: 3. Run it
-if exist "%ELECTRON%" (
-    echo [ OK ] Launching...
-    start "" "%ELECTRON%" "%MAIN%"
+echo [DEBUG] Checking Electron: "%EL_EXE%"
+echo [DEBUG] Checking Script: "%APP_JS%"
+
+:: Check if the EXE exists
+if exist "%EL_EXE%" (
+    echo [FOUND] Launching Gluo 1.04...
+    start "" "%EL_EXE%" "%APP_JS%"
 ) else (
+    echo [ERROR] The path is still wrong. 
+    echo Windows cannot find: "%EL_EXE%"
     echo.
-    echo [ ERROR ] Still can't find it.
-    echo Make sure the "IMPORTANT" folder is in the SAME folder as this .bat
-    echo.
+    echo Make sure you didn't rename the 'Glaze1.04' subfolder.
     pause
 )
-
